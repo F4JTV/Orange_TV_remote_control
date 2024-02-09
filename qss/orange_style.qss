@@ -1,0 +1,23 @@
+MainWindow {
+    background-color: lightslategrey
+}
+
+QPushButton#orange {
+    color: black;
+    background-color: orange;
+    border-style: outset;
+    border-width: 2px;
+    border-color: black;
+    border-radius : 25;
+    border : 2px solid black
+}
+
+QPushButton:pressed#orange {
+    color: white;
+    background-color: grey;
+    border-style: outset;
+    border-width: 2px;
+    border-color: white;
+    border-radius : 25;
+    border : 2px solid white
+}
