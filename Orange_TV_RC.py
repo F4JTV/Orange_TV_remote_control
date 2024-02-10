@@ -6,9 +6,10 @@ import configparser
 
 from PyQt5.QtNetwork import QNetworkRequest, QNetworkReply, QNetworkAccessManager
 from PyQt5.QtCore import QUrl, QFile, QIODevice, QTextStream, QSize, Qt
-from PyQt5.QtGui import QPixmap, QCloseEvent, QIcon
+from PyQt5.QtGui import QPixmap, QCloseEvent, QIcon, QKeySequence
 from PyQt5.QtWidgets import (QApplication, QSplashScreen, QMessageBox, QMainWindow,
-                             QWidget, QVBoxLayout, QPushButton, QGridLayout, QHBoxLayout)
+                             QWidget, QVBoxLayout, QPushButton, QGridLayout,
+                             QHBoxLayout, QShortcut)
 
 VERSION = "v0.1"
 APP_TITLE = f"Orange TV Remote Control {VERSION}"
@@ -28,7 +29,6 @@ DECODER_IP = "192.168.1.23"
 class MainWindow(QMainWindow):
     """ Main Window """
 
-    # noinspection PyUnresolvedReferences
     def __init__(self, d_ip):
         super().__init__(parent=None)
 
@@ -159,6 +159,59 @@ class MainWindow(QMainWindow):
         self.ffwd_btn.clicked.connect(lambda: self.do_request(BTN_CODE["FFWD"]))
         self.play_pause_btn.clicked.connect(lambda: self.do_request(BTN_CODE["PLAY/PAUSE"]))
         self.record_btn.clicked.connect(lambda: self.do_request(BTN_CODE["REC"]))
+
+        self.power_btn_shortcut = QShortcut(QKeySequence(Qt.Key_O), self)
+        self.power_btn_shortcut.activated.connect(self.power_btn.click)
+        self.up_arrow_shortcut = QShortcut(QKeySequence(Qt.Key_Up), self)
+        self.up_arrow_shortcut.activated.connect(self.up_arrow.click)
+        self.left_arrow_shortcut = QShortcut(QKeySequence(Qt.Key_Left), self)
+        self.left_arrow_shortcut.activated.connect(self.left_arrow.click)
+        self.ok_btn_shortcut = QShortcut(QKeySequence(Qt.Key_Return), self)
+        self.ok_btn_shortcut.activated.connect(self.ok_btn.click)
+        self.right_arrow_shortcut = QShortcut(QKeySequence(Qt.Key_Right), self)
+        self.right_arrow_shortcut.activated.connect(self.right_arrow.click)
+        self.down_arrow_shortcut = QShortcut(QKeySequence(Qt.Key_Down), self)
+        self.down_arrow_shortcut.activated.connect(self.down_arrow.click)
+        self.back_btn_shortcut = QShortcut(QKeySequence(Qt.Key_Escape), self)
+        self.back_btn_shortcut.activated.connect(self.back_btn.click)
+        self.menu_btn_shortcut = QShortcut(QKeySequence(Qt.Key_M), self)
+        self.menu_btn_shortcut.activated.connect(self.menu_btn.click)
+        self.vol_up_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_V), self)
+        self.vol_up_shortcut.activated.connect(self.vol_up_btn.click)
+        self.vol_down_shortcut = QShortcut(QKeySequence(Qt.Key_V), self)
+        self.vol_down_shortcut.activated.connect(self.vol_down_btn.click)
+        self.channel_up_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_C), self)
+        self.channel_up_shortcut.activated.connect(self.channel_up_btn.click)
+        self.channel_down_shortcut = QShortcut(QKeySequence(Qt.Key_C), self)
+        self.channel_down_shortcut.activated.connect(self.channel_down_btn.click)
+        self.btn_1_shortcut = QShortcut(QKeySequence(Qt.Key_1), self)
+        self.btn_1_shortcut.activated.connect(self.btn_1.click)
+        self.btn_2_shortcut = QShortcut(QKeySequence(Qt.Key_2), self)
+        self.btn_2_shortcut.activated.connect(self.btn_2.click)
+        self.btn_3_shortcut = QShortcut(QKeySequence(Qt.Key_3), self)
+        self.btn_3_shortcut.activated.connect(self.btn_3.click)
+        self.btn_4_shortcut = QShortcut(QKeySequence(Qt.Key_4), self)
+        self.btn_4_shortcut.activated.connect(self.btn_4.click)
+        self.btn_5_shortcut = QShortcut(QKeySequence(Qt.Key_5), self)
+        self.btn_5_shortcut.activated.connect(self.btn_5.click)
+        self.btn_6_shortcut = QShortcut(QKeySequence(Qt.Key_6), self)
+        self.btn_6_shortcut.activated.connect(self.btn_6.click)
+        self.btn_7_shortcut = QShortcut(QKeySequence(Qt.Key_7), self)
+        self.btn_7_shortcut.activated.connect(self.btn_7.click)
+        self.btn_8_shortcut = QShortcut(QKeySequence(Qt.Key_8), self)
+        self.btn_8_shortcut.activated.connect(self.btn_8.click)
+        self.btn_9_shortcut = QShortcut(QKeySequence(Qt.Key_9), self)
+        self.btn_9_shortcut.activated.connect(self.btn_9.click)
+        self.btn_0_shortcut = QShortcut(QKeySequence(Qt.Key_0), self)
+        self.btn_0_shortcut.activated.connect(self.btn_0.click)
+        self.fbwd_btn_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_Left), self)
+        self.fbwd_btn_shortcut.activated.connect(self.fbwd_btn.click)
+        self.ffwd_btn_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_Right), self)
+        self.ffwd_btn_shortcut.activated.connect(self.ffwd_btn.click)
+        self.play_pause_btn_shortcut = QShortcut(QKeySequence(Qt.Key_Space), self)
+        self.play_pause_btn_shortcut.activated.connect(self.play_pause_btn.click)
+        self.record_btn_shortcut = QShortcut(QKeySequence(Qt.Key_R), self)
+        self.record_btn_shortcut.activated.connect(self.record_btn.click)
 
     @staticmethod
     def config_btn_style(btn):
