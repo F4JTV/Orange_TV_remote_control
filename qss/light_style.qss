@@ -12,6 +12,16 @@ QPushButton#orange {
     border : 2px solid black
 }
 
+QPushButton:hover#orange {
+    color: black;
+    background-color: gray;
+    border-style: outset;
+    border-width: 2px;
+    border-color: black;
+    border-radius : 25;
+    border : 2px solid black
+}
+
 QPushButton:pressed#orange {
     color: white;
     background-color: darkgrey;

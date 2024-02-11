@@ -2,7 +2,7 @@ MainWindow {
     background-color: lightslategrey
 }
 
-QPushButton#orange {
+QPushButton {
     color: black;
     background-color: orange;
     border-style: outset;
@@ -12,7 +12,17 @@ QPushButton#orange {
     border : 2px solid black
 }
 
-QPushButton:pressed#orange {
+QPushButton:hover {
+    color: black;
+    background-color: darkgrey;
+    border-style: outset;
+    border-width: 2px;
+    border-color: white;
+    border-radius : 25;
+    border : 2px solid white
+}
+
+QPushButton:pressed {
     color: white;
     background-color: grey;
     border-style: outset;

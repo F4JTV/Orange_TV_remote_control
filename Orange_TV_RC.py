@@ -6,10 +6,10 @@ import configparser
 
 from PyQt5.QtNetwork import QNetworkRequest, QNetworkReply, QNetworkAccessManager
 from PyQt5.QtCore import QUrl, QFile, QIODevice, QTextStream, QSize, Qt
-from PyQt5.QtGui import QPixmap, QCloseEvent, QIcon, QKeySequence
-from PyQt5.QtWidgets import (QApplication, QSplashScreen, QMessageBox, QMainWindow,
-                             QWidget, QVBoxLayout, QPushButton, QGridLayout,
-                             QHBoxLayout, QShortcut)
+from PyQt5.QtGui import QPixmap, QIcon, QKeySequence
+from PyQt5.QtWidgets import (QApplication, QSplashScreen, QMainWindow, QWidget,
+                             QVBoxLayout, QPushButton, QGridLayout, QHBoxLayout,
+                             QShortcut)
 
 VERSION = "v0.1"
 APP_TITLE = f"Orange TV Remote Control {VERSION}"
@@ -20,15 +20,15 @@ BTN_CODE = {"ON/OFF": "116", "0": "512", "1": "513", "2": "514",
             "UP": "103", "DOWN": "108", "LEFT": "105", "RIGHT": "106",
             "OK": "352", "BACK": "158", "MENU": "139", "PLAY/PAUSE": "164",
             "FBWD": "168", "FFWD": "159", "REC": "167", "VOD": "393"}
-WIDTH = 350
-HEIGHT = 1000
+WIDTH = 300
+HEIGHT = 950
 BTN_SIZE = QSize(70, 70)
-DECODER_IP = "192.168.1.23"
 
 
 class MainWindow(QMainWindow):
     """ Main Window """
 
+    # noinspection PyUnresolvedReferences
     def __init__(self, d_ip):
         super().__init__(parent=None)
 
@@ -235,19 +235,6 @@ class MainWindow(QMainWindow):
         else:
             print("Error occured: ", er)
             print(reply.errorString())
-
-    def closeEvent(self, event):
-        """ Close event """
-        dialog = QMessageBox()
-        rep = dialog.question(self,
-                              "Exit",
-                              "Exit the app ?",
-                              dialog.Yes | dialog.No)
-        if rep == dialog.Yes:
-            self.close()
-        elif rep == dialog.No:
-            QCloseEvent.ignore(event)
-            return
 
 
 if __name__ == "__main__":
