@@ -4,12 +4,11 @@
 import sys
 import configparser
 
-from PyQt5.QtNetwork import QNetworkRequest, QNetworkReply, QNetworkAccessManager
-from PyQt5.QtCore import QUrl, QFile, QIODevice, QTextStream, QSize, Qt
-from PyQt5.QtGui import QPixmap, QIcon, QKeySequence
-from PyQt5.QtWidgets import (QApplication, QSplashScreen, QMainWindow, QWidget,
-                             QVBoxLayout, QPushButton, QGridLayout, QHBoxLayout,
-                             QShortcut)
+from PySide6.QtNetwork import QNetworkRequest, QNetworkReply, QNetworkAccessManager
+from PySide6.QtCore import QUrl, QFile, QIODevice, QTextStream, QSize, Qt
+from PySide6.QtGui import QPixmap, QIcon, QKeySequence, QShortcut
+from PySide6.QtWidgets import (QApplication, QSplashScreen, QMainWindow, QWidget,
+                               QVBoxLayout, QPushButton, QGridLayout, QHBoxLayout)
 
 VERSION = "v0.1"
 APP_TITLE = f"Orange TV Remote Control {VERSION}"
@@ -22,13 +21,12 @@ BTN_CODE = {"ON/OFF": "116", "0": "512", "1": "513", "2": "514",
             "FBWD": "168", "FFWD": "159", "REC": "167", "VOD": "393"}
 WIDTH = 300
 HEIGHT = 950
-BTN_SIZE = QSize(70, 70)
+BTN_SIZE = QSize(70, 60)
 
 
 class MainWindow(QMainWindow):
     """ Main Window """
 
-    # noinspection PyUnresolvedReferences
     def __init__(self, d_ip):
         super().__init__(parent=None)
 
@@ -176,11 +174,11 @@ class MainWindow(QMainWindow):
         self.back_btn_shortcut.activated.connect(self.back_btn.click)
         self.menu_btn_shortcut = QShortcut(QKeySequence(Qt.Key_M), self)
         self.menu_btn_shortcut.activated.connect(self.menu_btn.click)
-        self.vol_up_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_V), self)
+        self.vol_up_shortcut = QShortcut(QKeySequence(Qt.SHIFT | Qt.Key_V), self)
         self.vol_up_shortcut.activated.connect(self.vol_up_btn.click)
         self.vol_down_shortcut = QShortcut(QKeySequence(Qt.Key_V), self)
         self.vol_down_shortcut.activated.connect(self.vol_down_btn.click)
-        self.channel_up_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_C), self)
+        self.channel_up_shortcut = QShortcut(QKeySequence(Qt.SHIFT | Qt.Key_C), self)
         self.channel_up_shortcut.activated.connect(self.channel_up_btn.click)
         self.channel_down_shortcut = QShortcut(QKeySequence(Qt.Key_C), self)
         self.channel_down_shortcut.activated.connect(self.channel_down_btn.click)
@@ -204,9 +202,9 @@ class MainWindow(QMainWindow):
         self.btn_9_shortcut.activated.connect(self.btn_9.click)
         self.btn_0_shortcut = QShortcut(QKeySequence(Qt.Key_0), self)
         self.btn_0_shortcut.activated.connect(self.btn_0.click)
-        self.fbwd_btn_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_Left), self)
+        self.fbwd_btn_shortcut = QShortcut(QKeySequence(Qt.SHIFT | Qt.Key_Left), self)
         self.fbwd_btn_shortcut.activated.connect(self.fbwd_btn.click)
-        self.ffwd_btn_shortcut = QShortcut(QKeySequence(Qt.SHIFT + Qt.Key_Right), self)
+        self.ffwd_btn_shortcut = QShortcut(QKeySequence(Qt.SHIFT | Qt.Key_Right), self)
         self.ffwd_btn_shortcut.activated.connect(self.ffwd_btn.click)
         self.play_pause_btn_shortcut = QShortcut(QKeySequence(Qt.Key_Space), self)
         self.play_pause_btn_shortcut.activated.connect(self.play_pause_btn.click)
@@ -266,4 +264,4 @@ if __name__ == "__main__":
     window = MainWindow(decoder_ip)
     splash.finish(window)
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
