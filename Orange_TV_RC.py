@@ -20,8 +20,8 @@ BTN_CODE = {"ON/OFF": "116", "0": "512", "1": "513", "2": "514",
             "OK": "352", "BACK": "158", "MENU": "139", "PLAY/PAUSE": "164",
             "FBWD": "168", "FFWD": "159", "REC": "167", "VOD": "393"}
 WIDTH = 300
-HEIGHT = 950
-BTN_SIZE = QSize(70, 60)
+HEIGHT = 900
+BTN_SIZE = QSize(70, 50)
 
 
 class MainWindow(QMainWindow):
@@ -213,7 +213,6 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def config_btn_style(btn):
-        btn.setObjectName("orange")
         btn.setFixedSize(BTN_SIZE)
 
     def do_request(self, code):
